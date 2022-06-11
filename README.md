@@ -1,7 +1,5 @@
 **Instructions how to test this project:**
-to test this application: please click on any image on the home page to see the processing
-or please write it in url: "http://localhost:3000/images?filename=fish&width=100&height=100"
-after that you can change width or height manualy, then the image will resized to new params you wrote and will save in [public/images/resized] Directory
+/////
 
 **Steps to complete this project:**
 1- Initialize npm automatically select all defaults
