@@ -7,6 +7,11 @@ after that you can change width or height manualy, then the image will resized t
 1- Initialize npm automatically select all defaults
     $ npm init -y 
 
+*- install yarn 
+    $ npm i yarn
+    Check installation
+    yarn --version
+    
 2- Install type definitions for express
     $ npm install express                   // it's save to dependencies
     $ npm i --save-dev @types/express       // it's save to devDependencies
@@ -205,6 +210,40 @@ after that you can change width or height manualy, then the image will resized t
 
 install environment variables
     $ npm install dotenv --save
+
+install node-Postgres collection of Node.js for interfacing postgres database
+    $ npm install pg
+
+use Postgres:
+    $ psql -U postgres
+
+create database:
+Postgres=# create database store_dev;
+Postgres=# create database store_test;
+
+define environment that i will used with database:
+write that in .env        1:27:16
+    PGHOST='localhost'
+    PGUSER=postgres
+    PGDATABASE=process.env.USER
+    PGPASSWORD=3946
+    PGPORT=5432    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
