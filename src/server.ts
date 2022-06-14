@@ -1,23 +1,42 @@
 import express, { Request, Response } from "express";
-import routes from "./routes";
-import errorMiddleware from "./middleware/error.middleware";
-require('dotenv').config()
-const app: express.Application = express();
-const port = process.env.PORT;
+import appRouter from "./routes/index";
+import errorMiddleware from "./middleware/handleErrors.middleware";
+import config from "./config";
+import db from "./database/index.db";
+
+// connection to DB
+db.connect().then((client) => {
+  return client
+  .query("SELECT NOW()")
+  .then((res) => {
+    client.release();
+    console.log(res.rows);
+  })
+  .catch((err) => {
+    client.release();
+    console.log(err.stack);    
+  });
+});
+
+const app = express();
+const port = config.port || 3000;
 
 // Add routes
 // app.use(routes);
 
 app.get("/", (req: Request, res: Response) => {
-  throw new Error('Error exist');
+  //throw new Error('Error exist');
   res.json({message: "Hello World!"});
 });
 
-app.use((_req: Request, res: Response) => {
-  res.status(404).json({
-    message: 'You are lost'
-  })
-})
+
+app.use("/api", appRouter);
+
+// app.use((_req: Request, res: Response) => {
+//   res.status(404).json({
+//     message: 'You are lost'
+//   })
+// })
 app.use(errorMiddleware);
 
 // app.listen(port, function() {

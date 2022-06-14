@@ -146,7 +146,7 @@
 
 38- In the jasmine.json add the following configurations for a basic Jasmine configuration:
     {
-        "spec_dir": "build/tests",
+        "spec_dir": "dist/tests",
         "spec_files": [
             "**/*[sS]pec.js"
         ],
@@ -158,7 +158,7 @@
     }
 
 39- In the tsconfig.json file, add "spec" to the list of folders that we want to exclude.
-      "exclude": ["node_modules", "./build", "spec"]
+      "exclude": ["node_modules", "tests", "dist", "spec"]
 
 40- Add next code in package.json
     "test": "npx run build && npm run jasmine",
@@ -211,21 +211,54 @@ install environment variables
 
 install node-Postgres collection of Node.js for interfacing postgres database
     $ npm install pg
+    $ npm i --save-dev @types/pg
 
 use Postgres:
     $ psql -U postgres
 
 create database:
-Postgres=# create database store_dev;
-Postgres=# create database store_test;
+Postgres=# create database storedev;
+Postgres=# create database storetest;
 
 define environment that i will used with database:
 write that in .env        1:27:16
-    PGHOST='localhost'
-    PGUSER=postgres
-    PGDATABASE=process.env.USER
-    PGPASSWORD=3946
-    PGPORT=5432    
+    PORT=5000
+    MODE_ENV=dev
+    DB_HOST=localhost
+    POSTGRES_USER=postgres
+    POSTGRES_PASSWORD=3946
+    POSTGRES_DB=storedev
+    POSTGRES_DBPORT=5432
+    POSTGRES_DBTest=storetest 
+
+create file in the root called: config.ts to export .eng variables
+write that in config.ts:
+    import dotenv from "dotenv";
+    // Register
+    dotenv.config();
+
+    const {
+        PORT,
+        MODE_ENV,
+        DB_HOST,
+        POSTGRES_USER,
+        POSTGRES_PASSWORD,
+        POSTGRES_DB,
+        POSTGRES_DBTest,
+        POSTGRES_DBPORT
+    } = process.env;
+
+    export default {
+        port: PORT,
+        host: DB_HOST,
+        user: POSTGRES_USER,
+        password: POSTGRES_PASSWORD,
+        database: MODE_ENV === "dev" ? POSTGRES_DB : POSTGRES_DBTest,
+        dbPort: Number(POSTGRES_DBPORT),
+    };
+
+
+
 
 
 
