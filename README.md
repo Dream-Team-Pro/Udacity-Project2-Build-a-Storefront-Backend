@@ -14,6 +14,9 @@
     $ npm install express                   // it's save to dependencies
     $ npm i --save-dev @types/express       // it's save to devDependencies
 
+* Parse incoming request bodies in a middleware before your handlers 
+    $ npm i body-parser
+    
 ** add file called: .gitignore in root directory
     to ignore anything you don't upload in github
     
@@ -35,6 +38,10 @@
 
 7- Import express into server.ts
     import express, { Request, Response } from "express";
+
+*- Import body parser into server.ts  then use it
+    import bodyParser from "body-parser";
+    app.use(bodyParser.json());
 
 8- Create your application object with express() into server.ts
     const app = express();

@@ -1,5 +1,5 @@
 interface productInterface {
-    id? : number,
+    id? : string,
     title : string,
     price : number,
 }

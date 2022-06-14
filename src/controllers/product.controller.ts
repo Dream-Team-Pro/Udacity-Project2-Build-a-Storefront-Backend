@@ -16,7 +16,7 @@ export const getAll = async(req:Request, res:Response): Promise<void> => {
     }
 };
 
-export const addProduct = async(req:Request, res:Response) => {
+export const addProduct = async(req:Request, res:Response): Promise<void> => {
     try {
         const addProduct = await productModel.addProduct(req.body);
         res.send({
@@ -28,3 +28,14 @@ export const addProduct = async(req:Request, res:Response) => {
     }
 };
 
+export const deleteProduct = async(req: Request, res: Response): Promise<void> => {
+    try {
+        const deleteProduct = await productModel.deleteProduct(req.params.id);
+        res.send({
+            message: "This is delete product from table",
+            data: {...deleteProduct}
+        })
+    } catch (error) {
+        throw new Error('hello from delete error')
+    }
+};
