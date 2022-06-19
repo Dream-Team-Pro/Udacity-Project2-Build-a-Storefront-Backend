@@ -1,12 +1,12 @@
-import supertest from "supertest";
-import app from "../server";
+import appRouter from "./routes/index.test";
+import errorMiddleware from "../middleware/handleErrors.middleware";
+import express from "express";
+import config from "../config";
+const app = express();
+const port = config.port || 3000;
 
-const request = supertest(app);
+app.use("/", appRouter);
 
-describe('Test basic endpoint server', () => {
-    it('Get the / endpoint', async () => {
-        const response = await request.get('/');
-        console.log(response);
-        expect(response.status).toBe(200);
-    });
-});
+
+app.use(errorMiddleware);
+

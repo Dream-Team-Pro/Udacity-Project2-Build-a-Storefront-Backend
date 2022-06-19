@@ -21,10 +21,7 @@ db.connect().then((client) => {
   });
 });
 
-
-
 // Add routes
-// app.use(routes);
 app.use(bodyParser.json());
 
 app.get("/", (req: Request, res: Response) => {
@@ -32,21 +29,11 @@ app.get("/", (req: Request, res: Response) => {
   res.json({message: "Hello World!"});
 });
 
-
 app.use("/api", appRouter);
 
 app.use(errorMiddleware);
 
-// app.use((_req: Request, res: Response) => {
-//   res.status(404).json({
-//     message: 'You are lost'
-//   })
-// })
 
-// app.listen(port, function() {
-//   const url = `\x1b[2mhttp://localhost:${port}\x1b[0m`;
-//   console.log(`Please open ${url} to review the project ...`);
-// });
 app.listen(port, ()=> {
   console.log(`Server Started at localhost:${port}`)
 });

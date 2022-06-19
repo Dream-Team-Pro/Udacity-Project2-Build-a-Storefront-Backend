@@ -1,0 +1,51 @@
+[
+    {
+        "id": 3,
+        "firstname": "talia",
+        "lastname": "mohamed",
+        "password": "$2b$10$B0ADayrKqLL1up77tLXZRe7oNS/UV9K92beOWwf0ztuv2b.twcClS"
+    },
+    {
+        "id": 2,
+        "firstname": "badr",
+        "lastname": "mohamed",
+        "password": "$2b$10$i1qcpszQ0vBfZeU3clCWLeg2.uXcNAdPuoqkF1H4WiQSeHFEBTlvK"
+    },
+    {
+        "id": 4,
+        "firstname": "hanin",
+        "lastname": "mohamed",
+        "password": "$2b$10$ETt1oDLAsHs/Rso8xV5koeaUSEhVH1pUwhNRfggR5bPttsFCB3VWm"
+    },
+    {
+        "id": 1,
+        "firstname": "mohamed",
+        "lastname": "ahmed",
+        "password": "$2b$10$ekBDBisvXedUWcErLjqxT.OEahqlYRv6W2/pqiRoThaONdmNDln42"
+    },
+    {
+        "id": 5,
+        "firstname": "mohamed",
+        "lastname": "ahmed",
+        "password": "$2b$10$jskYPl3wDiRA2ig5KNS1C.GpSKOQl02TCGnPlB9/l.z12AeQNvntG"
+    },
+    {
+        "id": 6,
+        "firstname": "mohamed",
+        "lastname": "ahmed",
+        "password": "$2b$10$Vj1x4xR8tWvkua95eN5mKeaWjnCoFr6oxhfu/g7DHJ28VmNYmlkfO"
+    },
+    {
+        "id": 7,
+        "firstname": "mohamed",
+        "lastname": "ahmed",
+        "password": "$2b$10$6iJ63.g0u6DWnACbgkg7UeBDXhESVfSLSJlVQ4guzlyh0yXppoXv6"
+    },
+    {
+        "id": 8,
+        "firstname": "mohamed",
+        "lastname": "ahmed",
+        "password": "$2b$10$BNl0qI1aXMZCiIL4rILgMeJJib.EsWfWRc3zuWoZHpqlcSxu5i8Ya"
+    }
+    
+]

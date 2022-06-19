@@ -24,7 +24,7 @@ export default {
     host: DB_HOST,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
-    database: MODE_ENV === "dev" ? POSTGRES_DB : POSTGRES_DBTest,
+    database: POSTGRES_DBTest,
     dbPort: Number(POSTGRES_DBPORT),
     saltRounds: Number(SALT_ROUNDS),
     pepper: PEPPER, 

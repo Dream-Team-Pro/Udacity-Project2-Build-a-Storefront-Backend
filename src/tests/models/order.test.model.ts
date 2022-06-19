@@ -1,5 +1,5 @@
-import Order from "../interfaces/order.interface";
-import db from "../database/index.db";
+import Order from "../../interfaces/order.interface";
+import db from "../database/index.test.db";
 
 class orderModel {
     // get all orders -> index

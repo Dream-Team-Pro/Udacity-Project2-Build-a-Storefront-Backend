@@ -1,7 +1,9 @@
-import User from "../interfaces/user.interface";
-import db from "../database/index.db";
+import User from "../../interfaces/user.interface";
+import db from "../database/index.test.db";
 import bcrypt from 'bcrypt';
-import config from '../config';
+import config from '../config.test';
+
+
 
 class userModel {
     // get all users -> index
@@ -10,14 +12,16 @@ class userModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "SELECT id, firstname, password FROM users";
+            // const sql = "SELECT id, firstname, lastname, password FROM usrList[]";
+            const sql = require("../../../src/tests/database/data.json"); // Including data.json
+            
+            // Dummy user list
             const result = await conn.query(sql);
-            //close connection
-            conn.release();
+            console.log('users model: ', result);
             //return all users            
-            return result.rows;
+            return result;
         } catch (error) {
-            throw new Error(`unable get all users No. : ${error}`);                       
+            throw new Error(`unable get all users test No. : ${error}`);                       
         }
     }
 
@@ -36,7 +40,7 @@ class userModel {
             //return all users            
             return result.rows[0];
         } catch (error) {
-            throw new Error(`unable create user (${user.firstname}): ${error}`);                       
+            throw new Error(`unable create user test (${user.firstname}): ${error}`);                       
         }
     }
 
@@ -53,7 +57,7 @@ class userModel {
             //return result            
             return result.rows[0];
         } catch (error) {
-            throw new Error(`unable delete user No. (${id}): ${error}`);                       
+            throw new Error(`unable delete user test No. (${id}): ${error}`);                       
         }        
     }
 
@@ -70,7 +74,7 @@ class userModel {
             //return all users            
             return result.rows[0];
         } catch (error) {
-            throw new Error(`unable get user No. (${id}): ${error}`);                       
+            throw new Error(`unable get user test No. (${id}): ${error}`);                       
         }        
     }
 
@@ -89,10 +93,10 @@ class userModel {
             //return all users            
             return result.rows[0];
         } catch (error) {
-            throw new Error(`unable update user (${firstname}): ${error}`);                       
+            throw new Error(`unable update user test (${firstname}): ${error}`);                       
         }
     }
-    
+
     // login user
     async loginUser(firstname: string, password: string): Promise<User | null> {
         try {           
@@ -107,10 +111,28 @@ class userModel {
             //return all users      
             return result.rows[0];
         } catch (error) {
-            throw new Error(`unable login user (${firstname}): ${error}`);                       
+            throw new Error(`unable login user test (${firstname}): ${error}`);                       
         }
     }
-    
+
+    // login user test
+    async loginUserTest(firstname: string, password: string): Promise<User | null> {
+        try {           
+            //open DB connection
+            const conn = await db.connect()
+            //run query on DB
+            const sql = `SELECT firstname, password FROM users WHERE firstname=($1)`;
+            // const sql = `SELECT password FROM users WHERE firstname=($1) AND lastname=($2)`;
+            const result = await conn.query(sql, [firstname]);
+            //close connection                     
+            conn.release();
+            //return all users      
+            return result.rows[0];
+        } catch (error) {
+            throw new Error(`unable login user test (${firstname}): ${error}`);                       
+        }
+    }
+
 }
 
 export default userModel;

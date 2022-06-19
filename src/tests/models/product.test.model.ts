@@ -1,5 +1,5 @@
-import Product from "../interfaces/product.interface";
-import db from "../database/index.db";
+import Product from "../../interfaces/product.interface";
+import db from "../database/index.test.db";
 
 class ProductModel {
     // get all products -> index
