@@ -6,11 +6,9 @@ dotenv.config();
 // object distracting
 const {
     PORT,
-    MODE_ENV,
     DB_HOST,
     POSTGRES_USER,
     POSTGRES_PASSWORD,
-    POSTGRES_DB,
     POSTGRES_DBTest,
     POSTGRES_DBPORT,
     SALT_ROUNDS,

@@ -7,63 +7,99 @@ CREATE DATABASE storetest;
 ````
 when you want to test this project in Authoentication Please put this Token in bearer auth:
 ``
-Token:
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOiIxMjM0NSIsImlhdCI6MTY1NTU1ODY2MH0.k2xTSAS1SvtL23qv3ZupNLnb2EqeQGictAVvmEXsJNE
+Bearer Token:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko
 ``
 
 **add dummy data in storedev datatbase like:**
 
 ````
+***add dummy data in users Table like:***
 [
     {
-        "id": 3,
-        "firstname": "talia",
-        "lastname": "mohamed",
-        "password": "$2b$10$B0ADayrKqLL1up77tLXZRe7oNS/UV9K92beOWwf0ztuv2b.twcClS"
-    },
+        "id": 1,
+        "firstname": "mohamed",
+        "lastname": "salah",
+        "password": 12345
+    },    
     {
         "id": 2,
         "firstname": "badr",
         "lastname": "mohamed",
-        "password": "$2b$10$i1qcpszQ0vBfZeU3clCWLeg2.uXcNAdPuoqkF1H4WiQSeHFEBTlvK"
+        "password": 1234
     },
     {
-        "id": 4,
-        "firstname": "hanin",
+        "id": 3,
+        "firstname": "talia",
         "lastname": "mohamed",
-        "password": "$2b$10$ETt1oDLAsHs/Rso8xV5koeaUSEhVH1pUwhNRfggR5bPttsFCB3VWm"
-    },
+        "password": 123
+    }
+]
+
+````
+````
+***add dummy data in products Table like:***
+[
     {
         "id": 1,
-        "firstname": "mohamed",
-        "lastname": "ahmed",
-        "password": "$2b$10$ekBDBisvXedUWcErLjqxT.OEahqlYRv6W2/pqiRoThaONdmNDln42"
+        "name": "CD",
+        "price": 10,
+        "category": "accessories"
+    },    
+    {
+        "id": 2,
+        "name": "DVD",
+        "price": 20,
+        "category": "accessories"
     },
     {
-        "id": 5,
-        "firstname": "mohamed",
-        "lastname": "ahmed",
-        "password": "$2b$10$jskYPl3wDiRA2ig5KNS1C.GpSKOQl02TCGnPlB9/l.z12AeQNvntG"
-    },
-    {
-        "id": 6,
-        "firstname": "mohamed",
-        "lastname": "ahmed",
-        "password": "$2b$10$Vj1x4xR8tWvkua95eN5mKeaWjnCoFr6oxhfu/g7DHJ28VmNYmlkfO"
-    },
-    {
-        "id": 7,
-        "firstname": "mohamed",
-        "lastname": "ahmed",
-        "password": "$2b$10$6iJ63.g0u6DWnACbgkg7UeBDXhESVfSLSJlVQ4guzlyh0yXppoXv6"
-    },
-    {
-        "id": 8,
-        "firstname": "mohamed",
-        "lastname": "ahmed",
-        "password": "$2b$10$BNl0qI1aXMZCiIL4rILgMeJJib.EsWfWRc3zuWoZHpqlcSxu5i8Ya"
+        "id": 3,
+        "name": "Iphone13",
+        "price": 500,
+        "category": "electronics"
     }
-    
+]
+
+````
+````
+***add dummy data in orders Table like:***
+[
+    {
+        "id": 1,
+        "quantity": 50,
+        "user_id": 1,
+        "status": "active"
+    },    
+    {
+        "id": 2,
+        "quantity": 30,
+        "user_id": 2,
+        "status": "active"
+    },
+    {
+        "id": 3,
+        "quantity": 20,
+        "user_id": 3,
+        "status": "complete"
+    }
+]
+
+````
+````
+***add dummy data in products_orders Table like:***
+[
+    {
+        "id": 1,
+        "price": 60,
+        "product_id": 1,
+        "order_id": 2
+    },    
+    {
+        "id": 2,
+        "price": 5000,
+        "product_id": 3,
+        "order_id": 3
+    }
 ]
 
 ````
@@ -71,30 +107,39 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQ
 routes to use this project:
 (1) USER TABLE:
 ``
-GET:    [http://localhost:5000/api/users/]      =>  getAllUsers
-POST:   [http://localhost:5000/api/users/]      =>  addUser
-DELETE: [http://localhost:5000/api/users/:id]   =>  deleteUser
-GET:    [http://localhost:5000/api/users/:id]   =>  getUser
-PUT:    [http://localhost:5000/api/users/]      =>  updateUser
-POST:   [http://localhost:5000/api/users/login] =>  loginUser
+GET:    [http://localhost:5000/api/users/]      =>  fetch all Users
+POST:   [http://localhost:5000/api/users/]      =>  create a new User
+DELETE: [http://localhost:5000/api/users/:id]   =>  delete a User
+GET:    [http://localhost:5000/api/users/:id]   =>  fetch a single User by its ID
+PUT:    [http://localhost:5000/api/users/]      =>  update an existing User
+POST:   [http://localhost:5000/api/users/login] =>  login an existing User
 
 ``
 (2) PRODUCTS TABLE:
 ``
-GET:    [http://localhost:5000/api/products/]      =>  getAllproducts
-POST:   [http://localhost:5000/api/products/]      =>  addproduct
-DELETE: [http://localhost:5000/api/products/:id]   =>  deleteproduct
-GET:    [http://localhost:5000/api/products/:id]   =>  getproduct
-PUT:    [http://localhost:5000/api/products/]      =>  updateproduct
+GET:    [http://localhost:5000/api/products/]      =>  fetch all products
+POST:   [http://localhost:5000/api/products/]      =>  create a new product
+DELETE: [http://localhost:5000/api/products/:id]   =>  delete a product
+GET:    [http://localhost:5000/api/products/:id]   =>  fetch a single product by its ID
+PUT:    [http://localhost:5000/api/products/]      =>  update an existing product
 
 ``
 (3) ORDERS TABLE:
 ``
-GET:    [http://localhost:5000/api/orders/]      =>  getAllorders
-POST:   [http://localhost:5000/api/orders/]      =>  addorder
-DELETE: [http://localhost:5000/api/orders/:id]   =>  deleteorder
-GET:    [http://localhost:5000/api/orders/:id]   =>  getorder
-PUT:    [http://localhost:5000/api/orders/]      =>  updateorder
+GET:    [http://localhost:5000/api/orders/]      =>  fetch all orders
+POST:   [http://localhost:5000/api/orders/]      =>  create a new order
+DELETE: [http://localhost:5000/api/orders/:id]   =>  delete an order
+GET:    [http://localhost:5000/api/orders/:id]   =>  fetch a single order by its ID
+PUT:    [http://localhost:5000/api/orders/]      =>  update an existing order
+
+``
+(3) Daily orders in products_orders TABLE:
+``
+GET:    [http://localhost:5000/api/dailydailyorders/]      =>  fetch all dailyorders
+POST:   [http://localhost:5000/api/dailyorders/]      =>  create a new order
+DELETE: [http://localhost:5000/api/dailyorders/:id]   =>  delete an daily order
+GET:    [http://localhost:5000/api/dailyorders/:id]   =>  fetch a single order by its ID
+PUT:    [http://localhost:5000/api/dailyorders/]      =>  update an existing order
 
 ``
 
@@ -141,7 +186,7 @@ PUT:    [http://localhost:5000/api/orders/]      =>  updateorder
     const app = express();
 
 #### Set a port into server.js
-    const port = 3000;
+    const port = 5000;
 
 #### Set your application to listen on your port 
     and output a message to the console with app.listen  into server.ts
@@ -323,7 +368,7 @@ PUT:    [http://localhost:5000/api/orders/]      =>  updateorder
     Postgres=# create database storetest;
 
 #### define environment that i will used with database:
-    write that in .env        1:27:16
+    write that in .env
     PORT=5000
     MODE_ENV=dev
     DB_HOST=localhost

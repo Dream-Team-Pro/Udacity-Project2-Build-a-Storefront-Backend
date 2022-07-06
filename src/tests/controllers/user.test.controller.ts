@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UserModel from "../models/user.test.model";
 import jwt from 'jsonwebtoken';
-import config from '../../config';
+import config from '../config.test';
 
 const userModel = new UserModel();
  
@@ -62,17 +62,17 @@ export const getUser = async(req: Request, res: Response): Promise<void> => {
 };
 
 // export updateUser operation
-export const updateUser = async(req:Request, res:Response): Promise<void> => {
-    try {
-        const updateUser = await userModel.updateUser(Number(req.body.id), req.body.firstname, req.body.lastname, req.body.password);       
-        res.send({
-            message: "This is update user test in table",
-            data: {...updateUser}
-        })
-    } catch (error) {        
-        throw new Error('hello from update user test error')        
-    }
-};
+// export const updateUser = async(req:Request, res:Response): Promise<void> => {
+//     try {
+//         const updateUser = await userModel.updateUser(Number(req.body.id), req.body.firstname, req.body.lastname, req.body.password);       
+//         res.send({
+//             message: "This is update user test in table",
+//             data: {...updateUser}
+//         })
+//     } catch (error) {        
+//         throw new Error('hello from update user test error')        
+//     }
+// };
 
 // export loginUser operation
 export const loginUser = async(req: Request, res: Response): Promise<void> => {

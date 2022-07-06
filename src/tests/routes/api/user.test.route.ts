@@ -1,16 +1,14 @@
 import express from "express";
 import * as controller from "../../controllers/user.test.controller";
-import {auth} from '../../middleware/auth.middleware';
-
 const router = express.Router();
+console.log('product test');
 
 // Products Router
 // router('/', usemiddleware, controllers)
-router.get("/", controller.getAllUsers);
-// router.post("/", auth, controller.addUser);
-// router.delete("/:id", auth, controller.deleteUser);
-// router.get("/:id", auth, controller.getUser);
-// router.put("/", auth, controller.updateUser);
-// router.post("/login", controller.loginUser);
+// router.get("/", auth, controller.getAllProducts);
+// router.post("/", auth, controller.addProduct);
+// router.delete("/:id", auth, controller.deleteProduct);
+// router.get("/:id", auth, controller.getProduct);
+// router.put("/", auth, controller.updateProduct);
 
 export default router;

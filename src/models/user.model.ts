@@ -10,7 +10,7 @@ class userModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "SELECT id, firstname, password FROM users";
+            const sql = "SELECT id, firstname, lastname, password FROM users";
             const result = await conn.query(sql);
             //close connection
             conn.release();
@@ -109,8 +109,7 @@ class userModel {
         } catch (error) {
             throw new Error(`unable login user (${firstname}): ${error}`);                       
         }
-    }
-    
+    }    
 }
 
 export default userModel;

@@ -49,7 +49,7 @@ class ProductModel {
             //return result            
             return result.rows[0];
         } catch (error) {
-            throw new Error(`unable delete product No. (${id}): ${error}`);                       
+            throw new Error(`unable to delete product No. (${id}): ${error}`);                       
         }        
     }
 
@@ -85,8 +85,7 @@ class ProductModel {
         } catch (error) {
             throw new Error(`unable update prodtc (${name}): ${error}`);                       
         }
-    }    
-    
+    }        
 }
 
 export default ProductModel;

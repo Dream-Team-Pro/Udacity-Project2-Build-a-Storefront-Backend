@@ -56,14 +56,14 @@ export const getOrder = async(req: Request, res: Response): Promise<void> => {
 };
 
 // export updateorder operation
-export const updateOrder = async(req:Request, res:Response): Promise<void> => {  
-    try {
-        const updateorder = await orderModel.updateOrder(Number(req.body.id), Number(req.body.product_id), Number(req.body.quantity), Number(req.body.user_id), req.body.status);       
-        res.send({
-            message: "This is update order in table",
-            data: {...updateorder}
-        })
-    } catch (error) {        
-        throw new Error('hello from update error')        
-    }
-};
+// export const updateOrder = async(req:Request, res:Response): Promise<void> => {  
+//     try {
+//         const updateorder = await orderModel.updateOrder(Number(req.body.id), Number(req.body.product_id), Number(req.body.quantity), Number(req.body.user_id), req.body.status);       
+//         res.send({
+//             message: "This is update order in table",
+//             data: {...updateorder}
+//         })
+//     } catch (error) {        
+//         throw new Error('hello from update error')        
+//     }
+// };

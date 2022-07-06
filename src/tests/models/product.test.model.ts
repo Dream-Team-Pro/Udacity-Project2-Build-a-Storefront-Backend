@@ -1,5 +1,6 @@
 import Product from "../../interfaces/product.interface";
 import db from "../database/index.test.db";
+const fs = require('fs');
 
 class ProductModel {
     // get all products -> index
@@ -8,7 +9,7 @@ class ProductModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "SELECT id, name, price, category FROM products";
+            const sql = fs.readFileSync('../database/products.db', 'utf8');
             const result = await conn.query(sql);
             //close connection
             conn.release();

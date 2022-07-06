@@ -1,7 +1,7 @@
 import express from "express";
 import * as controller from "../../controllers/order.test.controller";
 const router = express.Router();
-console.log('oder tes');
+console.log('oder test');
 
 // orders Router
 // router('/', usemiddleware, controllers)

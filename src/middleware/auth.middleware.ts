@@ -5,21 +5,14 @@ import config from '../config';
 export const auth = (req: Request, res: Response, next: NextFunction) => {
     try {
         const authHeader = req.get('authorization');
-        console.log('authHeader from test: ', authHeader);
-        console.log('typeof authHeader from test: ', typeof authHeader);
-
         if(authHeader) {
             const bearer = authHeader.split(' ')[0].toLowerCase();
             const token = authHeader.split(' ')[1];
-            console.log('bearer: ', bearer);
-            console.log('token: ', token);
             
             if(token && bearer === 'bearer') {
             // if(token && bearer === 'bearer') {
                 // verify token
-                const decoder = jwt.verify(token, config.secret as unknown as string);
-                console.log('decoder from auth test: ', decoder);
-                
+                const decoder = jwt.verify(token, config.secret as unknown as string);               
                 if (decoder) {
                     next();
                 } else {

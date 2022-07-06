@@ -26,13 +26,12 @@ app.use(bodyParser.json());
 
 app.get("/", (req: Request, res: Response) => {
   //throw new Error('Error exist');
-  res.json({message: "Hello World!"});
+  res.json({message: "Hello World in Udacity Project 2 Build a Storefront Backend!"});
 });
 
 app.use("/api", appRouter);
 
 app.use(errorMiddleware);
-
 
 app.listen(port, ()=> {
   console.log(`Server Started at localhost:${port}`)

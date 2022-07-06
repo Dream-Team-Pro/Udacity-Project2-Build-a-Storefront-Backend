@@ -56,14 +56,14 @@ export const getProduct = async(req: Request, res: Response): Promise<void> => {
 };
 
 // export updateProduct operation
-export const updateProduct = async(req:Request, res:Response): Promise<void> => {
-    try {
-        const updateProduct = await productModel.updateProduct(Number(req.body.id), req.body.name, Number(req.body.price), req.body.category);       
-        res.send({
-            message: "This is update product in table",
-            data: {...updateProduct}
-        })
-    } catch (error) {        
-        throw new Error('hello from update error')        
-    }
-};
+// export const updateProduct = async(req:Request, res:Response): Promise<void> => {
+//     try {
+//         const updateProduct = await productModel.updateProduct(Number(req.body.id), req.body.name, Number(req.body.price), req.body.category);       
+//         res.send({
+//             message: "This is update product in table",
+//             data: {...updateProduct}
+//         })
+//     } catch (error) {        
+//         throw new Error('hello from update error')        
+//     }
+// };

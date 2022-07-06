@@ -1,6 +1,5 @@
 import express from "express";
 import * as controller from "../../controllers/order.controller";
-// import {auth} from '../../middleware/auth.middleware';
 import {auth} from '../../middleware/auth.middleware';
 const router = express.Router();
 
