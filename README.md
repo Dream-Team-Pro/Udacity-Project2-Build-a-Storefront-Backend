@@ -156,6 +156,9 @@ PUT:    [http://localhost:5000/api/dailyorders/]      =>  update an existing ord
     $ npm i --save-dev @types/body-parser
     $ npm i body-parser
 
+#### Install Sequelize 
+    $ npm install --save sequelize
+
 #### Install type definitions for express
     $ npm install express                   // it's save to dependencies
     $ npm i --save-dev @types/express       // it's save to devDependencies
