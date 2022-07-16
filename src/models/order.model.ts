@@ -8,7 +8,7 @@ class orderModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "SELECT id, quantity, user_id, status FROM orders";
+            const sql = "SELECT id, user_id, status FROM orders";
             const result = await conn.query(sql);
             //close connection
             conn.release();
@@ -25,8 +25,8 @@ class orderModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "INSERT INTO orders (quantity, user_id, status) VALUES ($1, $2, $3);";
-            const result = await conn.query(sql, [order.quantity, order.user_id, order.status]);
+            const sql = "INSERT INTO orders (user_id, status) VALUES ($1, $2);";
+            const result = await conn.query(sql, [order.user_id, order.status]);
             //close connection
             conn.release();
             //return all orders            
@@ -59,7 +59,7 @@ class orderModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "SELECT id, quantity, user_id, status FROM orders WHERE id=($1);";
+            const sql = "SELECT id, user_id, status FROM orders WHERE id=($1);";
             const result = await conn.query(sql, [id]);
             //close connection
             conn.release();
@@ -71,13 +71,13 @@ class orderModel {
     }
     
     // update order
-    async updateOrder(id: number, quantity: number, user_id: number, status: string): Promise<Order | null> {
+    async updateOrder(id: number, user_id: number, status: string): Promise<Order | null> {
         try {           
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = `UPDATE orders SET quantity=($2), user_id=($3), status=($4) WHERE id=($1);`;
-            const result = await conn.query(sql, [id, quantity, user_id, status]);
+            const sql = `UPDATE orders SET user_id=($2), status=($3) WHERE id=($1);`;
+            const result = await conn.query(sql, [id, user_id, status]);
             //close connection                     
             conn.release();
             //return all orders            

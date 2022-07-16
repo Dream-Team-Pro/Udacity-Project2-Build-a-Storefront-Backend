@@ -1,11 +1,9 @@
 import express, { Request, Response } from "express";
 import configTest from "../tests/config.test";
-import sequelize from "../tests/server.test";
+// import sequelize from "../tests/server.test";
 const { Client } = require("pg");
 
-
-
-
+console.log('database: ', configTest.database);
 
 const server = require('../tests/server.test'); // sequelize model
 
@@ -17,10 +15,8 @@ const server = require('../tests/server.test'); // sequelize model
 // then there are tests
 
 
-
-
 // Connecting to a database using Sequelize package 
-const { Sequelize } = require('sequelize');
+// const { Sequelize } = require('sequelize');
 
 // Passing parameters to connect
 // const sequelize = new Sequelize(configTest.database, configTest.user, configTest.password, {

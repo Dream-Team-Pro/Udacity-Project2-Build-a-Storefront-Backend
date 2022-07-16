@@ -5,16 +5,39 @@
 CREATE DATABASE storedev;
 CREATE DATABASE storetest;
 ````
-when you want to test this project in Authoentication Please put this Token in bearer auth:
+when you want to test this project in Authentication Please put this Token in bearer auth:
 ``
 Bearer Token:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko
 ``
 
 **add dummy data in storedev datatbase like:**
+you can put these dummy datas by using application statements in routes I mentioned it to use this project in the following statements:
 
+**this project has two .env environments called:**
+.env.dev:    used in development environment
+.env.test:   used in test environment
+
+
+***add theses info in .env file in root of project like:***
 ````
+PORT=5000
+MODE_ENV=dev
+DB_HOST=localhost
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=3946
+POSTGRES_DB=storedev
+POSTGRES_DBPORT=5432
+POSTGRES_DBTest=storetest
+SALT_ROUNDS=10
+PEPPER=pepper
+TOKEN_SECRET=MohSecretKey
+TOKEN_HEADER_KEY=tokenheaderkey
+````
+
+
 ***add dummy data in users Table like:***
+````
 [
     {
         "id": 1,
@@ -38,6 +61,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQ
 
 ````
 ````
+
 ***add dummy data in products Table like:***
 [
     {
@@ -105,12 +129,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQ
 ````
 
 routes to use this project:
-(1) USER TABLE:
+(1) USERS TABLE:
 ``
 GET:    [http://localhost:5000/api/users/]      =>  fetch all Users
 POST:   [http://localhost:5000/api/users/]      =>  create a new User
 DELETE: [http://localhost:5000/api/users/:id]   =>  delete a User
-GET:    [http://localhost:5000/api/users/:id]   =>  fetch a single User by its ID
+PATCH:  [http://localhost:5000/api/users/:id]   =>  fetch a single User by its ID
 PUT:    [http://localhost:5000/api/users/]      =>  update an existing User
 POST:   [http://localhost:5000/api/users/login] =>  login an existing User
 
@@ -120,7 +144,7 @@ POST:   [http://localhost:5000/api/users/login] =>  login an existing User
 GET:    [http://localhost:5000/api/products/]      =>  fetch all products
 POST:   [http://localhost:5000/api/products/]      =>  create a new product
 DELETE: [http://localhost:5000/api/products/:id]   =>  delete a product
-GET:    [http://localhost:5000/api/products/:id]   =>  fetch a single product by its ID
+PATCH:  [http://localhost:5000/api/products/:id]   =>  fetch a single product by its ID
 PUT:    [http://localhost:5000/api/products/]      =>  update an existing product
 
 ``
@@ -129,16 +153,16 @@ PUT:    [http://localhost:5000/api/products/]      =>  update an existing produc
 GET:    [http://localhost:5000/api/orders/]      =>  fetch all orders
 POST:   [http://localhost:5000/api/orders/]      =>  create a new order
 DELETE: [http://localhost:5000/api/orders/:id]   =>  delete an order
-GET:    [http://localhost:5000/api/orders/:id]   =>  fetch a single order by its ID
+PATCH:  [http://localhost:5000/api/orders/:id]   =>  fetch a single order by its ID
 PUT:    [http://localhost:5000/api/orders/]      =>  update an existing order
 
 ``
 (3) Daily orders in products_orders TABLE:
 ``
-GET:    [http://localhost:5000/api/dailydailyorders/]      =>  fetch all dailyorders
+GET:    [http://localhost:5000/api/dailyorders/]      =>  fetch all dailyorders
 POST:   [http://localhost:5000/api/dailyorders/]      =>  create a new order
 DELETE: [http://localhost:5000/api/dailyorders/:id]   =>  delete an daily order
-GET:    [http://localhost:5000/api/dailyorders/:id]   =>  fetch a single order by its ID
+PATCH:  [http://localhost:5000/api/dailyorders/:id]   =>  fetch a single order by its ID
 PUT:    [http://localhost:5000/api/dailyorders/]      =>  update an existing order
 
 ``

@@ -1,17 +1,16 @@
 import dotenv from "dotenv";
+// require('custom-env').env('dev')
 
-// Register
 dotenv.config();
-// console.log(process.env);;
-// object distracting
+console.log('POSTGRES_DB in config: ', process.env.POSTGRES_DB)
+
 const {
     PORT,
-    MODE_ENV,
+    NODE_ENV,
     DB_HOST,
     POSTGRES_USER,
     POSTGRES_PASSWORD,
     POSTGRES_DB,
-    POSTGRES_DBTest,
     POSTGRES_DBPORT,
     SALT_ROUNDS,
     PEPPER,
@@ -20,11 +19,12 @@ const {
 } = process.env;
 
 export default {
+    NODE_ENV : 'dev',
     port: PORT,
     host: DB_HOST,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
-    database: MODE_ENV === "dev" ? POSTGRES_DB : POSTGRES_DBTest,
+    database: POSTGRES_DB,
     dbPort: Number(POSTGRES_DBPORT),
     saltRounds: Number(SALT_ROUNDS),
     pepper: PEPPER, 

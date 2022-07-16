@@ -11,14 +11,14 @@ const config_1 = __importDefault(require("./config"));
 const index_db_1 = __importDefault(require("./database/index.db"));
 const app = (0, express_1.default)();
 const port = config_1.default.port || 3000;
-// Connecting to a database using Sequelize package 
-const { Sequelize } = require('sequelize');
-// Passing parameters to connect
-const sequelize = new Sequelize(config_1.default.database, config_1.default.user, config_1.default.password, {
-    host: 'localhost',
-    dialect: 'postgres',
-    sync: true, //create the table if it not exists
-});
+// // Connecting to a database using Sequelize package 
+// const { Sequelize } = require('sequelize');
+// // Passing parameters to connect
+// const sequelize = new Sequelize(config.database, config.user, config.password, {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   sync: true, //create the table if it not exists
+// });
 // // connection to DB
 index_db_1.default.connect().then((client) => {
     return client

@@ -14,6 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_test_db_1 = __importDefault(require("../database/index.test.db"));
 const fs = require('fs');
+// const conn = await db.connect()
+// //run query on DB
+// const sql = fs.readFileSync('../database/orders.db', 'utf8');
+// const result = await conn.query(sql);
+// //close connecti
 class orderModel {
     // get all orders -> index
     getAllOrders() {
@@ -22,7 +27,7 @@ class orderModel {
                 //open DB connection
                 const conn = yield index_test_db_1.default.connect();
                 //run query on DB
-                const sql = fs.readFileSync('../database/orders.db', 'utf8');
+                const sql = "SELECT id, user_id, status FROM orders";
                 const result = yield conn.query(sql);
                 //close connection
                 conn.release();
@@ -41,8 +46,8 @@ class orderModel {
                 //open DB connection
                 const conn = yield index_test_db_1.default.connect();
                 //run query on DB
-                const sql = "INSERT INTO orders (quantity, user_id, status) VALUES ($1, $2, $3);";
-                const result = yield conn.query(sql, [order.quantity, order.user_id, order.status]);
+                const sql = "INSERT INTO orders (user_id, status) VALUES ($1, $2);";
+                const result = yield conn.query(sql, [order.user_id, order.status]);
                 //close connection
                 conn.release();
                 //return all orders            
@@ -79,7 +84,7 @@ class orderModel {
                 //open DB connection
                 const conn = yield index_test_db_1.default.connect();
                 //run query on DB
-                const sql = "SELECT id, quantity, user_id, status FROM orders WHERE id=($1);";
+                const sql = "SELECT id, user_id, status FROM orders WHERE id=($1);";
                 const result = yield conn.query(sql, [id]);
                 //close connection
                 conn.release();
@@ -92,14 +97,14 @@ class orderModel {
         });
     }
     // update order
-    updateOrder(id, quantity, user_id, status) {
+    updateOrder(id, user_id, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 //open DB connection
                 const conn = yield index_test_db_1.default.connect();
                 //run query on DB
-                const sql = `UPDATE orders SET quantity=($2), user_id=($3), status=($4) WHERE id=($1);`;
-                const result = yield conn.query(sql, [id, quantity, user_id, status]);
+                const sql = `UPDATE orders SET user_id=($2), status=($3) WHERE id=($1);`;
+                const result = yield conn.query(sql, [id, user_id, status]);
                 //close connection                     
                 conn.release();
                 //return all orders            

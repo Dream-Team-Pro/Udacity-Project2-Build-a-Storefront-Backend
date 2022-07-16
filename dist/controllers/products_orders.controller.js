@@ -74,7 +74,7 @@ exports.getProOrder = getProOrder;
 // export updateorder operation
 const updateProOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const updateorder = yield orderModel.updateProOrder(Number(req.body.id), Number(req.body.price), Number(req.body.product_id), Number(req.body.oder_id));
+        const updateorder = yield orderModel.updateProOrder(Number(req.body.id), Number(req.body.price), Number(req.body.quantity), Number(req.body.product_id), Number(req.body.order_id));
         res.send({
             message: "This is update product_order in table",
             data: Object.assign({}, updateorder)

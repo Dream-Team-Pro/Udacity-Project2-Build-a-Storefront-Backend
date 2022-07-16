@@ -5,19 +5,33 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index     :   `api/products/`     [GET]       // getAllProducts 
-- Show      :   `api/products/:id`  [PATCH]     // getProduct
-- Create    :   `api/products/`     [POST]      // addProduct
-- Delete    :   `api/products/:id`  [DELETE]    // deleteProduct
+- Index     :   `api/products/`     [GET]       // getAllProducts   [token required]
+- Create    :   `api/products/`     [POST]      // addProduct       [token required]
+- Delete    :   `api/products/:id`  [DELETE]    // deleteProduct    [token required]
+- Show      :   `api/products/:id`  [PATCH]     // getProduct       [token required]
+- Update    :   `api/products/`     [PUT]       // updateProduct    [token required]
 
-#### Users
-- Index [token required]
-- Show (args: id)[token required]
-- Create (args: User)[token required]
+#### users
+- Index     :   `api/users/`       [GET]       // getAllusers     [token required]
+- Create    :   `api/users/`       [POST]      // addUser         
+- Delete    :   `api/users/:id`    [DELETE]    // deleteUser      [token required]
+- Show      :   `api/users/:id`    [PATCH]     // getUser         [token required]
+- Update    :   `api/users/`       [PUT]       // updateUser      [token required]
+- Login     :   `api/users/login`  [POST]      // loginUser      
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Index     :   `api/orders/`     [GET]       // getAllorders   [token required]
+- Create    :   `api/orders/`     [POST]      // addPOrder       [token required]
+- Delete    :   `api/orders/:id`  [DELETE]    // deletePOrder    [token required]
+- Show      :   `api/orders/:id`  [PATCH]     // getPOrder       [token required]
+- Update    :   `api/orders/`     [PUT]       // updatePOrder    [token required]
+
+#### products_orders
+- Index     :   `api/dailyorders/`     [GET]       // getAllProOrders   [token required]
+- Create    :   `api/dailyorders/`     [POST]      // addProOrder       [token required]
+- Delete    :   `api/dailyorders/:id`  [DELETE]    // deleteProOrder    [token required]
+- Show      :   `api/dailyorders/:id`  [PATCH]     // getProOrder       [token required]
+- Update    :   `api/dailyorders/`     [PUT]       // updateProOrder    [token required]
 
 ## Data Shapes
 #### Product
@@ -34,7 +48,7 @@ These are the notes from a meeting with the frontend developer that describe wha
         category VARCHAR(100)
     );
 
-#### User
+#### Users
 - id
 - firstName
 - lastName
@@ -50,21 +64,35 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
+- user_id  rwfrences with (id) in users table
 - status of order (active or complete)
 
     /* My SQL commands */
-    CREATE ENUM ('active', 'complete');
+    CREATE TYPE mood AS ENUM ('active', 'complete');
 
     CREATE TABLE orders(
-        id SERIAL PRIMARY KEY,
-        product_id INTEGER foreignkey to products table,
-        quantity INTEGER DEFAULT 1,
-        user_id INTEGER foreignkey to users table,  
-        status enum(active, complete) NOT NULL
+        id SERIAL,
+        user_id INTEGER,
+        status mood NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
 
-        FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE 
+#### Products_Orders
+- id
+- price
+- quantity of each product in the order
+- product_id referenced with (id) in products table
+- order_id referenced with (id) in users table
+
+    /* My SQL commands */
+    CREATE TABLE products_orders (
+        id SERIAL,
+        price NUMERIC NOT NULL DEFAULT 0,
+        quantity INTEGER DEFAULT 1,
+        product_id INTEGER,
+        order_id INTEGER,
+        PRIMARY KEY (id),
+        FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+        FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
     );

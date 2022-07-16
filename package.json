@@ -4,7 +4,7 @@
     "description": "**Coder: Mohamed Salah Zaghloul**",
     "main": "server.js",
     "scripts": {
-        "test": "npm run build && npm run jasmine",
+        "test": "db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test reset",
         "start": "nodemon src/server.ts",
         "build": "npx tsc",
         "lint": "eslint --fix src/**/*.ts",
@@ -14,6 +14,7 @@
     "dependencies": {
         "bcrypt": "^5.0.1",
         "body-parser": "^1.20.0",
+        "custom-env": "^2.0.1",
         "db-migrate": "^0.11.13",
         "db-migrate-pg": "^1.2.2",
         "dotenv": "^16.0.1",

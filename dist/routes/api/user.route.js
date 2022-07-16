@@ -35,7 +35,7 @@ const router = express_1.default.Router();
 router.get("/", auth_middleware_1.auth, controller.getAllUsers);
 router.post("/", controller.addUser);
 router.delete("/:id", auth_middleware_1.auth, controller.deleteUser);
-router.get("/:id", auth_middleware_1.auth, controller.getUser);
+router.patch("/:id", auth_middleware_1.auth, controller.getUser);
 router.put("/", auth_middleware_1.auth, controller.updateUser);
 router.post("/login", controller.loginUser);
 exports.default = router;

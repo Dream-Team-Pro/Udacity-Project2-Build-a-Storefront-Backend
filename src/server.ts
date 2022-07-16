@@ -7,15 +7,15 @@ import db from "./database/index.db";
 const app = express();
 const port = config.port || 3000;
 
-// Connecting to a database using Sequelize package 
-const { Sequelize } = require('sequelize');
+// // Connecting to a database using Sequelize package 
+// const { Sequelize } = require('sequelize');
 
-// Passing parameters to connect
-const sequelize = new Sequelize(config.database, config.user, config.password, {
-  host: 'localhost',
-  dialect: 'postgres',
-  sync: true, //create the table if it not exists
-});
+// // Passing parameters to connect
+// const sequelize = new Sequelize(config.database, config.user, config.password, {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   sync: true, //create the table if it not exists
+// });
 
 // // connection to DB
 db.connect().then((client) => {
@@ -30,8 +30,6 @@ db.connect().then((client) => {
     console.log(err.stack);    
   });
 });
-
-
 
 // // Connecting to a database using Sequelize package 
 // const { Sequelize } = require('sequelize');

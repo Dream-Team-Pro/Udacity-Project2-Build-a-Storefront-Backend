@@ -1,4 +1,3 @@
-# dotenv environment variables file
-#.env
-#dist
-#node_modules
+.env
+dist
+node_modules

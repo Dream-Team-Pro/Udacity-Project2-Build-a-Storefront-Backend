@@ -13,7 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_test_1 = __importDefault(require("../tests/config.test"));
+// import sequelize from "../tests/server.test";
 const { Client } = require("pg");
+console.log('database: ', config_test_1.default.database);
 const server = require('../tests/server.test'); // sequelize model
 // beforeAll(async () => {
 //   await server.sync({ force: true });
@@ -21,7 +23,7 @@ const server = require('../tests/server.test'); // sequelize model
 // });
 // then there are tests
 // Connecting to a database using Sequelize package 
-const { Sequelize } = require('sequelize');
+// const { Sequelize } = require('sequelize');
 // Passing parameters to connect
 // const sequelize = new Sequelize(configTest.database, configTest.user, configTest.password, {
 //   host: 'localhost',

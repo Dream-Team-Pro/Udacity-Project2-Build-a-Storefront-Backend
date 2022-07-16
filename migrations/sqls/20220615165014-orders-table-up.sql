@@ -1,9 +1,8 @@
 /* Replace with your SQL commands */
 CREATE TYPE mood AS ENUM ('active', 'complete');
 
-CREATE TABLE orders(
+CREATE TABLE IF NOT EXISTS orders(
     id SERIAL,
-    quantity INTEGER DEFAULT 1,
     user_id INTEGER,
     status mood NOT NULL,
     PRIMARY KEY (id),

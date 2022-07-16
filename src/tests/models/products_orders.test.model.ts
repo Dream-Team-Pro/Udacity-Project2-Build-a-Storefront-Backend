@@ -9,7 +9,9 @@ class proOrderModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = fs.readFileSync('../database/products_orders.db', 'utf8');
+            const sql = `SELECT products_orders.id, products_orders.price, products_orders.quantity, products.name, orders.status 
+                         FROM products_orders INNER JOIN products ON products_orders.product_id = products.id 
+                         INNER JOIN orders ON products_orders.order_id = orders.id`;
             const result = await conn.query(sql);           
             //close connection
             conn.release();
@@ -26,8 +28,8 @@ class proOrderModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "INSERT INTO products_orders (price, product_id, order_id) VALUES ($1, $2, $3);";
-            const result = await conn.query(sql, [order.price, order.product_id, order.order_id]);
+            const sql = "INSERT INTO products_orders (price, quantity, product_id, order_id) VALUES ($1, $2, $3, $4);";
+            const result = await conn.query(sql, [order.price, order.quantity, order.product_id, order.order_id]);
             //close connection
             conn.release();
             //return all products_orders            
@@ -60,7 +62,7 @@ class proOrderModel {
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = "SELECT id, price, product_id, order_id FROM products_orders WHERE id=($1);";
+            const sql = "SELECT id, price, quantity, product_id, order_id FROM products_orders WHERE id=($1);";
             const result = await conn.query(sql, [id]);
             //close connection
             conn.release();
@@ -72,13 +74,13 @@ class proOrderModel {
     }
     
     // update order
-    async updateProOrder(id: number, price: number, product_id: number, order_id: number): Promise<Order | null> {
+    async updateProOrder(id: number, price: number, quantity: number, product_id: number, order_id: number): Promise<Order | null> {
         try {           
             //open DB connection
             const conn = await db.connect()
             //run query on DB
-            const sql = `UPDATE products_orders SET pric=($2), product_id=($3), order_id=($4) WHERE id=($1);`;
-            const result = await conn.query(sql, [id, price, product_id, order_id]);
+            const sql = `UPDATE products_orders SET price=($2), quantity=($3), product_id=($4), order_id=($5) WHERE id=($1);`;
+            const result = await conn.query(sql, [id, price, quantity, product_id, order_id]);
             //close connection                     
             conn.release();
             //return all products_orders            
