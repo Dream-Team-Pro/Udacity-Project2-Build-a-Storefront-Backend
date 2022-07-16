@@ -26,14 +26,13 @@ you can put these dummy datas by using application statements in routes I mentio
 
 ***add theses info in .env file in root of project like:***
 ````
+POSTGRES_DB=storedev
+POSTGRES_DBTEST=storetest
 PORT=5000
-MODE_ENV=dev
 DB_HOST=localhost
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=3946
-POSTGRES_DB=storedev
 POSTGRES_DBPORT=5432
-POSTGRES_DBTest=storetest
 SALT_ROUNDS=10
 PEPPER=pepper
 TOKEN_SECRET=MohSecretKey
