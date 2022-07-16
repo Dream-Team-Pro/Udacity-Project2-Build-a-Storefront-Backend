@@ -4,6 +4,7 @@ import {
   StacktraceOption,
 } from "jasmine-spec-reporter";
 import SuiteInfo = jasmine.SuiteInfo;
+process.env.NODE_ENV = 'test';
 
 class CustomProcessor extends DisplayProcessor {
   public displayJasmineStarted(info: SuiteInfo, log: string): string {

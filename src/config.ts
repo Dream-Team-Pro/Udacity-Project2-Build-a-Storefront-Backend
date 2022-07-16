@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 // require('custom-env').env('dev')
 
 dotenv.config();
-console.log('POSTGRES_DB in config: ', process.env.POSTGRES_DB)
 
 const {
     PORT,

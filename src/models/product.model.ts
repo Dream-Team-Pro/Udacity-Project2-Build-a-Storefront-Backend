@@ -37,7 +37,7 @@ class ProductModel {
     }
 
     // delete product 
-    async deleteProduct(id: number): Promise<Product | null> {
+    async deleteProduct(id: number): Promise<Product> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -54,7 +54,7 @@ class ProductModel {
     }
 
     // get product by id 
-    async getProduct(id: number): Promise<Product | null> {
+    async getProduct(id: number): Promise<Product> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -71,7 +71,7 @@ class ProductModel {
     }
 
     // update product
-    async updateProduct(id: number, name: string, price: number, category: string): Promise<Product | null> {
+    async updateProduct(id: number, name: string, price: number, category: string): Promise<Product> {
         try {           
             //open DB connection
             const conn = await db.connect()

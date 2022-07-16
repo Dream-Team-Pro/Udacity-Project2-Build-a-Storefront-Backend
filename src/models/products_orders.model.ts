@@ -39,7 +39,7 @@ class proOrderModel {
     }
 
     // delete order 
-    async deleteProOrder(id: number): Promise<Order | null> {
+    async deleteProOrder(id: number): Promise<Order> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -56,7 +56,7 @@ class proOrderModel {
     }
 
     // get order by id 
-    async getProOrder(id: number): Promise<Order | null> {
+    async getProOrder(id: number): Promise<Order> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -73,7 +73,7 @@ class proOrderModel {
     }
     
     // update order
-    async updateProOrder(id: number, price: number, quantity: number, product_id: number, order_id: number): Promise<Order | null> {
+    async updateProOrder(id: number, price: number, quantity: number, product_id: number, order_id: number): Promise<Order> {
         try {           
             //open DB connection
             const conn = await db.connect()

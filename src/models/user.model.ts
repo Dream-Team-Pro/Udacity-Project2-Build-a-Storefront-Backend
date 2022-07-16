@@ -33,7 +33,7 @@ class userModel {
             const result = await conn.query(sql, [user.firstname, user.lastname, hash]);
             //close connection
             conn.release();            
-            //return all users            
+            //return user                       
             return result.rows[0];
         } catch (error) {
             throw new Error(`unable create user (${user.firstname}): ${error}`);                       
@@ -41,7 +41,7 @@ class userModel {
     }
 
     // delete user 
-    async deleteUser(id: number): Promise<User | null> {
+    async deleteUser(id: number): Promise<User> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -58,7 +58,7 @@ class userModel {
     }
 
     // get user by id 
-    async getUser(id: number): Promise<User | null> {
+    async getUser(id: number): Promise<User> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -75,7 +75,7 @@ class userModel {
     }
 
     // update user
-    async updateUser(id: number, firstname: string, lastname: string, password: string): Promise<User | null> {
+    async updateUser(id: number, firstname: string, lastname: string, password: string): Promise<User> {
         try {           
             //open DB connection
             const conn = await db.connect()

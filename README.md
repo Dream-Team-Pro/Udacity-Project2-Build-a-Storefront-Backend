@@ -14,10 +14,15 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQ
 **add dummy data in storedev datatbase like:**
 you can put these dummy datas by using application statements in routes I mentioned it to use this project in the following statements:
 
-**this project has two .env environments called:**
-.env.dev:    used in development environment
-.env.test:   used in test environment
+**this project has multi tests about all models expects:**
+- DeleteUser: Because this table has a forein key in orders table, so I when I test this function I cann't complete test another table
+  However you can see this function in userSpec file and it's work perfect
 
+- DeleteProduct: Because this table has a forein key in products_orders table, so I when I test this function I cann't complete test another table
+  However you can see this function in productSpec file and it's work perfect
+  
+- DeleteOrder: Because this table has a forein key in orders & products_orders tables, so I when I test this function I cann't complete test another table
+  However you can see this function in orderSpec file and it's work perfect
 
 ***add theses info in .env file in root of project like:***
 ````
@@ -90,19 +95,16 @@ TOKEN_HEADER_KEY=tokenheaderkey
 [
     {
         "id": 1,
-        "quantity": 50,
         "user_id": 1,
         "status": "active"
     },    
     {
         "id": 2,
-        "quantity": 30,
         "user_id": 2,
         "status": "active"
     },
     {
         "id": 3,
-        "quantity": 20,
         "user_id": 3,
         "status": "complete"
     }
@@ -115,12 +117,14 @@ TOKEN_HEADER_KEY=tokenheaderkey
     {
         "id": 1,
         "price": 60,
+        "quantity": 50,
         "product_id": 1,
         "order_id": 2
     },    
     {
         "id": 2,
         "price": 5000,
+        "quantity": 10,
         "product_id": 3,
         "order_id": 3
     }

@@ -1,4 +1,5 @@
 /* Replace with your SQL commands */
+DROP TYPE IF EXISTS mood;
 CREATE TYPE mood AS ENUM ('active', 'complete');
 
 CREATE TABLE IF NOT EXISTS orders(
