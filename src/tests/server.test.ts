@@ -13,11 +13,9 @@ db.connect().then((client) => {
   .query("SELECT NOW()")
   .then((res) => {
     client.release();
-    console.log(res.rows);
   })
   .catch((err) => {
     client.release();
-    console.log(err.stack);    
   });
 });
 

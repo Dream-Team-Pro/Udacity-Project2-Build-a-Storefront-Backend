@@ -4,7 +4,7 @@
     "description": "**Coder: Mohamed Salah Zaghloul**",
     "main": "server.js",
     "scripts": {
-        "test": "db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test reset",
+        "test": "set NODE_ENV=test && db-migrate --env test up && npm run build && npm run jasmine && db-migrate --env test reset",
         "start": "nodemon src/server.ts",
         "build": "npx tsc",
         "lint": "eslint --fix src/**/*.ts",

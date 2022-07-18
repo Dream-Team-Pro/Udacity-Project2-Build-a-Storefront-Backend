@@ -1,148 +1,149 @@
 import express from "express";
 const supertest = require("supertest");
-const app = require('../tests/server.test');
+const app = require('../../tests/server.test');
 
-describe('Tests of order Table URL Endpoints', () => {
-      it('should Create a new order with AUTH & Right URL endpoint', async () => {
+describe('Tests of User Table URL Endpoints', () => {
+    it('should create a new user with Right URL endpoint', async () => {
+        const res = await supertest(app)
+          .post('/api/users/')
+          .send({
+            firstname: "mohamed",
+            lastname: "salah",
+            password: "12345"
+          })
+        expect(res.statusCode).toEqual(200)
+        expect(res.body.message).toBe('Success to add user in table')
+      });
+
+    it('should not create a new user with Wrong URL endpoint', async () => {
+        const res = await supertest(app)
+          .post('/api/user/')
+          .send({
+            firstname: "mohamed",
+            lastname: "salah",
+            password: "12345"
+          })
+        expect(res.statusCode).toEqual(500)
+        expect(res.body).toThrowError
+      })
+
+      it('should Get all users with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .post('/api/orders/')
-          .send({
-            user_id: 2,
-            status: "active"
-          })
+          .get('/api/users/')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to Create a new order in table')
+        expect(res.body.message).toBe('Success to get all users in table')
       });
 
-      it('should not Create a new order without AUTH & Right URL endpoint', async () => {
-        const res = await supertest(app)
-          .post('/api/orders/')
-          .send({
-            user_id: 2,
-            status: "active"
-          })
-        expect(res.statusCode).toEqual(403)
-        expect(res.body.message).toBe('No authorization found')
-      });
-
-      it('should Get all orders with AUTH & Right URL endpoint', async () => {
+      it('should not Get all users with AUTH & Wrong URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .get('/api/orders/')
-          .set('Authorization', `Bearer ${AccessToken}`)
-        expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to get all orders in table')
-      });
-
-      it('should not Get all orders with AUTH & Wrong URL endpoint', async () => {
-        let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
-        const res = await supertest(app)
-          .get('/api/order/')
+          .get('/api/user/')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(500)
         expect(res.body).toThrowError
       });
 
-      it('should not Get all orders without AUTH & Right URL endpoint', async () => {
+      it('should not Get all users without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .get('/api/orders/')
+          .get('/api/users/')
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })   
 
-      it('should not Get all orders without AUTH & Wrong URL endpoint', async () => {
+      it('should not Get all users without AUTH & Wrong URL endpoint', async () => {
         const res = await supertest(app)
-          .get('/api/order/')
+          .get('/api/user/')
         expect(res.statusCode).toEqual(500)
         expect(res.body).toThrowError
       })      
 
-      it('should Get one order with AUTH & Right URL endpoint', async () => {
+      it('should Get one user with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .patch('/api/orders/1')
+          .patch('/api/users/3')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to get an order from table')
+        expect(res.body.message).toBe('Success to get a user from table')
       });
 
-      it('should not Get one order with AUTH & Wrong URL endpoint', async () => {
+      it('should not Get one user with AUTH & Wrong URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .patch('/api/orders/100')
+          .patch('/api/users/100')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.body).toThrowError
       });
 
-      it('should not Get one order without AUTH & Right URL endpoint', async () => {
+      it('should not Get one user without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .patch('/api/orders/1')
+          .patch('/api/users/3')
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })   
 
-      it('should not Get one order without AUTH & Wrong URL endpoint', async () => {
+      it('should not Get one user without AUTH & Wrong URL endpoint', async () => {
         const res = await supertest(app)
-          .patch('/api/order/100')
+          .patch('/api/user/100')
         expect(res.statusCode).toEqual(500)
         expect(res.body).toThrowError
       })            
 
-    it('should Update order with AUTH & Right URL endpoint', async () => {
+    it('should Update user with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .put('/api/orders/')
+          .put('/api/users/')
           .send({
-            id: 1,
-            user_id: 2,
-            status: "complete"
+            id: 3,
+            firstname: "badr",
+            lastname: "salah",
+            password: "123"
           })
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to update the order in table')
+        expect(res.body.message).toBe('Success to update the user in table')
       });
 
-      it('should not update order without AUTH & Right URL endpoint', async () => {
+      it('should not update user without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .put('/api/orders/')
+          .put('/api/users/')
           .send({
-            id: 1,
-            user_id: 2,
-            status: "complete"
+            id: 3,
+            firstname: "badr",
+            lastname: "salah",
+            password: "123"
           })          
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })   
 
 
-    it('should Delete order with AUTH & Right URL endpoint', async () => {
+    it('should Delete user with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .delete('/api/orders/1')
+          .delete('/api/users/3')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to delete order from table')
+        expect(res.body.message).toBe('Success to delete user from table')
       });
 
-      it('should not Delete order without AUTH & Right URL endpoint', async () => {
+      it('should not Delete user without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .delete('/api/orders/1')      
+          .delete('/api/users/3')      
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })      
 
-      it('should Create a new order with AUTH & Right URL endpoint', async () => {
-        let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
+      it('should create a new user with Right URL endpoint', async () => {
         const res = await supertest(app)
-          .post('/api/orders/')
+          .post('/api/users/')
           .send({
-            user_id: 2,
-            status: "active"
+            firstname: "mohamed",
+            lastname: "salah",
+            password: "12345"
           })
-          .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to Create a new order in table')
+        expect(res.body.message).toBe('Success to add user in table')
       });
 })
