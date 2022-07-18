@@ -8,7 +8,7 @@ export const getAllOrders = async(req:Request, res:Response): Promise<void> => {
     try {
         const orders = await orderModel.getAllOrders();
         res.send({
-            message: "This is all orders in table",
+            message: "Success to get all orders in table",
             data: {...orders}
         })
     } catch (error) {
@@ -21,7 +21,7 @@ export const addOrder = async(req:Request, res:Response): Promise<void> => {
     try {
         const addorder = await orderModel.addOrder(req.body);
         res.send({
-            message: "This is all add order in table",
+            message: "Success to Create a new order in table",
             data: {...addorder}
         })
     } catch (error) {
@@ -34,7 +34,7 @@ export const deleteOrder = async(req: Request, res: Response): Promise<void> => 
     try {
         const deleteorder = await orderModel.deleteOrder(parseInt(req.params.id));
         res.send({
-            message: "This is delete order from table",
+            message: "Success to delete order from table",
             data: {...deleteorder}
         })
     } catch (error) {
@@ -47,7 +47,7 @@ export const getOrder = async(req: Request, res: Response): Promise<void> => {
     try {
         const getorder = await orderModel.getOrder(parseInt(req.params.id));
         res.send({
-            message: "This is get a order from table",
+            message: "Success to get an order from table",
             data: {...getorder}
         })
     } catch (error) {
@@ -60,7 +60,7 @@ export const updateOrder = async(req:Request, res:Response): Promise<void> => {
     try {
         const updateorder = await orderModel.updateOrder(Number(req.body.id), Number(req.body.user_id), req.body.status);       
         res.send({
-            message: "This is update order in table",
+            message: "Success to update the order in table",
             data: {...updateorder}
         })
     } catch (error) {        

@@ -1,4 +1,4 @@
-interface orderInterface {
+interface productOrderInterface {
     id? : number,
     price : number,
     quantity : number,
@@ -6,4 +6,4 @@ interface orderInterface {
     order_id : number
 }
 
-export default orderInterface;
+export default productOrderInterface;

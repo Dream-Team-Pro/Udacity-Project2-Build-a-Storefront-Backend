@@ -5,11 +5,14 @@
 CREATE DATABASE storedev;
 CREATE DATABASE storetest;
 ````
-when you want to test this project in Authentication Please put this Token in bearer auth:
+when you want to use this project in Authentication Please put this Token in bearer auth:
 ``
 Bearer Token:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko
 ``
+**when you test ths project feel free to write the below command 
+  because the project creates all tables in Database Test then after completed all tests you, all tables will be dropped **
+write command: npm run test
 
 **add dummy data in storedev datatbase like:**
 you can put these dummy datas by using application statements in routes I mentioned it to use this project in the following statements:
@@ -26,18 +29,18 @@ you can put these dummy datas by using application statements in routes I mentio
 
 ***add theses info in .env file in root of project like:***
 ````
+POSTGRES_DB=storedev
+POSTGRES_DBTEST=storetest
 PORT=5000
-MODE_ENV=dev
 DB_HOST=localhost
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=3946
-POSTGRES_DB=storedev
 POSTGRES_DBPORT=5432
-POSTGRES_DBTest=storetest
 SALT_ROUNDS=10
 PEPPER=pepper
 TOKEN_SECRET=MohSecretKey
 TOKEN_HEADER_KEY=tokenheaderkey
+
 ````
 
 
@@ -136,7 +139,6 @@ routes to use this project:
 (1) USERS TABLE:
 ``
 GET:    [http://localhost:5000/api/users/]      =>  fetch all Users
-POST:   [http://localhost:5000/api/users/]      =>  create a new User
 DELETE: [http://localhost:5000/api/users/:id]   =>  delete a User
 PATCH:  [http://localhost:5000/api/users/:id]   =>  fetch a single User by its ID
 PUT:    [http://localhost:5000/api/users/]      =>  update an existing User
@@ -164,10 +166,10 @@ PUT:    [http://localhost:5000/api/orders/]      =>  update an existing order
 (3) Daily orders in products_orders TABLE:
 ``
 GET:    [http://localhost:5000/api/dailyorders/]      =>  fetch all dailyorders
-POST:   [http://localhost:5000/api/dailyorders/]      =>  create a new order
+POST:   [http://localhost:5000/api/dailyorders/]      =>  create a new dailyorder
 DELETE: [http://localhost:5000/api/dailyorders/:id]   =>  delete an daily order
-PATCH:  [http://localhost:5000/api/dailyorders/:id]   =>  fetch a single order by its ID
-PUT:    [http://localhost:5000/api/dailyorders/]      =>  update an existing order
+PATCH:  [http://localhost:5000/api/dailyorders/:id]   =>  fetch a single dailyorder by its ID
+PUT:    [http://localhost:5000/api/dailyorders/]      =>  update an existing dailyorder
 
 ``
 

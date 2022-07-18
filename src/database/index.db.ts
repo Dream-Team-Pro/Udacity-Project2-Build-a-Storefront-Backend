@@ -12,11 +12,6 @@ const {
     POSTGRES_DBTEST,
 } = process.env
 
-console.log('NODE_ENV in index.db: ', NODE_ENV)
-console.log('POSTGRES_DB in index.db: ', POSTGRES_DB)
-console.log('POSTGRES_DBTEST in index.db: ', POSTGRES_DBTEST)
-console.log('DB_HOST in index.db: ', DB_HOST)
-
 let pool: Pool
 
 if (NODE_ENV === 'test') {

@@ -8,6 +8,6 @@ const router = express.Router();
 router.use("/users", userRouter);
 router.use("/products", productRouter);
 router.use("/orders", orderRouter);
-router.use("/dailyorder", productsOrdersRouter);
+router.use("/dailyorders", productsOrdersRouter);
 
 export default router;

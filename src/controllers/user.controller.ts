@@ -3,12 +3,12 @@ import UserModel from "../models/user.model";
 import jwt from 'jsonwebtoken';
 import config from '../config';
 
-const userModel = new UserModel();
+const userMod = new UserModel();
  
 // export getAllUsers operation
 export const getAllUsers = async(req:Request, res:Response): Promise<void> => {
     try {
-        const users = await userModel.getAllUsers();
+        const users = await userMod.getAllUsers();
         res.send({
             message: "Success to get all users in table",
             data: {...users}
@@ -21,7 +21,7 @@ export const getAllUsers = async(req:Request, res:Response): Promise<void> => {
 // export addProduct operation
 export const addUser = async(req:Request, res:Response): Promise<void> => {
     try {
-        const addUser = await userModel.addUser(req.body);
+        const addUser = await userMod.addUser(req.body);
         res.send({
             message: "Success to add user in table",
             data: {...addUser}
@@ -34,7 +34,7 @@ export const addUser = async(req:Request, res:Response): Promise<void> => {
 // export deleteUser operation
 export const deleteUser = async(req: Request, res: Response): Promise<void> => {
     try {
-        const deleteUser = await userModel.deleteUser(parseInt(req.params.id));
+        const deleteUser = await userMod.deleteUser(parseInt(req.params.id));
         res.send({
             message: "Success to delete user from table",
             data: {...deleteUser}
@@ -47,7 +47,7 @@ export const deleteUser = async(req: Request, res: Response): Promise<void> => {
 // export getUser operation
 export const getUser = async(req: Request, res: Response): Promise<void> => {
     try {
-        const getUser = await userModel.getUser(parseInt(req.params.id));
+        const getUser = await userMod.getUser(parseInt(req.params.id));
         res.send({
             message: "Success to get a user from table",
             data: {...getUser}
@@ -60,7 +60,7 @@ export const getUser = async(req: Request, res: Response): Promise<void> => {
 // export updateUser operation
 export const updateUser = async(req:Request, res:Response): Promise<void> => {
     try {
-        const updateUser = await userModel.updateUser(Number(req.body.id), req.body.firstname, req.body.lastname, req.body.password);       
+        const updateUser = await userMod.updateUser(Number(req.body.id), req.body.firstname, req.body.lastname, req.body.password);       
         res.send({
             message: "Success to update the user in table",
             data: {...updateUser}
@@ -73,7 +73,8 @@ export const updateUser = async(req:Request, res:Response): Promise<void> => {
 // export loginUser operation
 export const loginUser = async(req: Request, res: Response): Promise<void> => {
     try {
-        const loginUser = await userModel.loginUser(req.body.firstname, req.body.password);
+        const loginUser = await userMod.loginUser(req.body.firstname);
+        
         if (loginUser) {
             // assign token 
             const token = jwt.sign({firstname: req.body.firstname, password: req.body.password}, config.secret as unknown as string);
@@ -94,5 +95,7 @@ export const loginUser = async(req: Request, res: Response): Promise<void> => {
             status: "General Error while Login User",
             message: "Incorrect firstname or password"
         }); 
-    }
+    }    
+    console.log('token: ', jwt.sign({firstname: req.body.firstname, password: req.body.password}, config.secret as unknown as string));
+
 };

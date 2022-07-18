@@ -17,7 +17,7 @@ class userModel {
             //return all users            
             return result.rows;
         } catch (error) {
-            throw new Error(`unable get all users No. : ${error}`);                       
+            throw new Error(`unable get all users : ${error}`);                       
         }
     }
 
@@ -94,12 +94,13 @@ class userModel {
     }
     
     // login user
-    async loginUser(firstname: string, password: string): Promise<User | null> {
+    async loginUser(firstname: string): Promise<User> {
         try {           
             //open DB connection
             const conn = await db.connect()
+           
             //run query on DB
-            const sql = `SELECT firstname, password FROM users WHERE firstname=($1)`;
+            const sql = `SELECT firstname FROM users WHERE firstname=($1)`;
             // const sql = `SELECT password FROM users WHERE firstname=($1) AND lastname=($2)`;
             const result = await conn.query(sql, [firstname]);
             //close connection                     

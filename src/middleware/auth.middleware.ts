@@ -28,7 +28,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     } catch (error) {
         res.status(400).json({
             status: "Data Error while Login User",
-            message: "Incorrect firstname or password"
+            message: "Incorrect Auth"
         });         
     }
 }

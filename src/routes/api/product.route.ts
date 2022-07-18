@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", auth, controller.getAllProducts);
 router.post("/", auth, controller.addProduct);
 router.delete("/:id", auth, controller.deleteProduct);
-router.get("/:id", auth, controller.getProduct);
+router.patch("/:id", auth, controller.getProduct);
 router.put("/", auth, controller.updateProduct);
 
 export default router;

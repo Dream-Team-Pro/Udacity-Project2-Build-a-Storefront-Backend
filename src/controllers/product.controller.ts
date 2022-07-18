@@ -8,7 +8,7 @@ export const getAllProducts = async(req:Request, res:Response): Promise<void> =>
     try {
         const products = await productModel.getAllProducts();
         res.send({
-            message: "This is all products in table",
+            message: "Success to get all products in table",
             data: {...products}
         })
     } catch (error) {
@@ -21,7 +21,7 @@ export const addProduct = async(req:Request, res:Response): Promise<void> => {
     try {
         const addProduct = await productModel.addProduct(req.body);
         res.send({
-            message: "This is all add product in table",
+            message: "Success to Create a new product in table",
             data: {...addProduct}
         })
     } catch (error) {
@@ -34,7 +34,7 @@ export const deleteProduct = async(req: Request, res: Response): Promise<void> =
     try {
         const deleteProduct = await productModel.deleteProduct(parseInt(req.params.id));
         res.send({
-            message: "This is delete product from table",
+            message: "Success to delete product from table",
             data: {...deleteProduct}
         })
     } catch (error) {
@@ -47,7 +47,7 @@ export const getProduct = async(req: Request, res: Response): Promise<void> => {
     try {
         const getProduct = await productModel.getProduct(parseInt(req.params.id));
         res.send({
-            message: "This is get a product from table",
+            message: "Success to get a product from table",
             data: {...getProduct}
         })
     } catch (error) {
@@ -60,7 +60,7 @@ export const updateProduct = async(req:Request, res:Response): Promise<void> => 
     try {
         const updateProduct = await productModel.updateProduct(Number(req.body.id), req.body.name, Number(req.body.price), req.body.category);       
         res.send({
-            message: "This is update product in table",
+            message: "Success to update the product in table",
             data: {...updateProduct}
         })
     } catch (error) {        

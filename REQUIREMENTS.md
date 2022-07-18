@@ -34,7 +34,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Update    :   `api/dailyorders/`     [PUT]       // updateProOrder    [token required]
 
 ## Data Shapes
-#### Product
+### Product
 -  id
 - name
 - price
@@ -48,7 +48,7 @@ These are the notes from a meeting with the frontend developer that describe wha
         category VARCHAR(100)
     );
 
-#### Users
+### Users
 - id
 - firstName
 - lastName
@@ -62,7 +62,7 @@ These are the notes from a meeting with the frontend developer that describe wha
         password VARCHAR (100) NOT NULL
     );
 
-#### Orders
+### Orders
 - id
 - user_id  rwfrences with (id) in users table
 - status of order (active or complete)
@@ -78,7 +78,7 @@ These are the notes from a meeting with the frontend developer that describe wha
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
 
-#### Products_Orders
+### Products_Orders
 - id
 - price
 - quantity of each product in the order
@@ -96,3 +96,12 @@ These are the notes from a meeting with the frontend developer that describe wha
         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
     );
+
+### Token for user
+    {
+        "id": 1,
+        "firstname": "mohamed",
+        "lastname": "salah",
+        "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko"
+    }, 
+

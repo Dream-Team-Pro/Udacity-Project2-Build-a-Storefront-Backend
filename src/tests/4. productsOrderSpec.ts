@@ -2,41 +2,45 @@ import express from "express";
 const supertest = require("supertest");
 const app = require('../tests/server.test');
 
-describe('Tests of order Table URL Endpoints', () => {
-      it('should Create a new order with AUTH & Right URL endpoint', async () => {
+describe('Tests of products_orders Table URL Endpoints', () => {
+      it('should Create a new products_orders with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .post('/api/orders/')
+          .post('/api/dailyorders/')
           .send({
-            user_id: 2,
-            status: "active"
+            price: 60,
+            quantity: 50,
+            product_id: 2,
+            order_id: 2
           })
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to Create a new order in table')
+        expect(res.body.message).toBe('Success to Create a new dailyorders in table')
       });
 
-      it('should not Create a new order without AUTH & Right URL endpoint', async () => {
+      it('should not Create a new products_orders without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .post('/api/orders/')
+          .post('/api/dailyorders/')
           .send({
-            user_id: 2,
-            status: "active"
+            price: 60,
+            quantity: 50,
+            product_id: 2,
+            order_id: 2
           })
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       });
 
-      it('should Get all orders with AUTH & Right URL endpoint', async () => {
+      it('should Get all dailyorders with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .get('/api/orders/')
+          .get('/api/dailyorders/')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to get all orders in table')
+        expect(res.body.message).toBe('Success to get all dailyorders in table')
       });
 
-      it('should not Get all orders with AUTH & Wrong URL endpoint', async () => {
+      it('should not Get all dailyorders with AUTH & Wrong URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
           .get('/api/order/')
@@ -45,104 +49,95 @@ describe('Tests of order Table URL Endpoints', () => {
         expect(res.body).toThrowError
       });
 
-      it('should not Get all orders without AUTH & Right URL endpoint', async () => {
+      it('should not Get all dailyorders without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .get('/api/orders/')
+          .get('/api/dailyorders/')
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })   
 
-      it('should not Get all orders without AUTH & Wrong URL endpoint', async () => {
+      it('should not Get all dailyorders without AUTH & Wrong URL endpoint', async () => {
         const res = await supertest(app)
           .get('/api/order/')
         expect(res.statusCode).toEqual(500)
         expect(res.body).toThrowError
       })      
 
-      it('should Get one order with AUTH & Right URL endpoint', async () => {
+      it('should Get one products_orders with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .patch('/api/orders/1')
+          .patch('/api/dailyorders/1')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to get an order from table')
+        expect(res.body.message).toBe('Success to get a dailyorder from table')
       });
 
-      it('should not Get one order with AUTH & Wrong URL endpoint', async () => {
+      it('should not Get one products_orders with AUTH & Wrong URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .patch('/api/orders/100')
+          .patch('/api/dailyorders/100')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.body).toThrowError
       });
 
-      it('should not Get one order without AUTH & Right URL endpoint', async () => {
+      it('should not Get one products_orders without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .patch('/api/orders/1')
+          .patch('/api/dailyorders/1')
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })   
 
-      it('should not Get one order without AUTH & Wrong URL endpoint', async () => {
+      it('should not Get one products_orders without AUTH & Wrong URL endpoint', async () => {
         const res = await supertest(app)
           .patch('/api/order/100')
         expect(res.statusCode).toEqual(500)
         expect(res.body).toThrowError
       })            
 
-    it('should Update order with AUTH & Right URL endpoint', async () => {
+    it('should Update products_orders with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .put('/api/orders/')
+          .put('/api/dailyorders/')
           .send({
             id: 1,
-            user_id: 2,
-            status: "complete"
+            price: 50,
+            quantity: 50,
+            product_id: 2,
+            order_id: 2
           })
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to update the order in table')
+        expect(res.body.message).toBe('Success to update the dailyorder in table')
       });
 
-      it('should not update order without AUTH & Right URL endpoint', async () => {
+      it('should not update products_orders without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .put('/api/orders/')
+          .put('/api/dailyorders/')
           .send({
             id: 1,
-            user_id: 2,
-            status: "complete"
+            price: 50,
+            quantity: 50,
+            product_id: 2,
+            order_id: 2
           })          
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })   
 
 
-    it('should Delete order with AUTH & Right URL endpoint', async () => {
+    it('should Delete products_orders with AUTH & Right URL endpoint', async () => {
         let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
         const res = await supertest(app)
-          .delete('/api/orders/1')
+          .delete('/api/dailyorders/1')
           .set('Authorization', `Bearer ${AccessToken}`)
         expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to delete order from table')
+        expect(res.body.message).toBe('Success to delete dailyorders from table')
       });
 
-      it('should not Delete order without AUTH & Right URL endpoint', async () => {
+      it('should not Delete products_orders without AUTH & Right URL endpoint', async () => {
         const res = await supertest(app)
-          .delete('/api/orders/1')      
+          .delete('/api/dailyorders/1')      
         expect(res.statusCode).toEqual(403)
         expect(res.body.message).toBe('No authorization found')
       })      
-
-      it('should Create a new order with AUTH & Right URL endpoint', async () => {
-        let AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJtb2hhbWVkIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjU2NTI1NjE2fQ.OjGi62sChnVlLJGva6AR3STD0EmCs8GovKjZxPVBGko';
-        const res = await supertest(app)
-          .post('/api/orders/')
-          .send({
-            user_id: 2,
-            status: "active"
-          })
-          .set('Authorization', `Bearer ${AccessToken}`)
-        expect(res.statusCode).toEqual(200)
-        expect(res.body.message).toBe('Success to Create a new order in table')
-      });
 })

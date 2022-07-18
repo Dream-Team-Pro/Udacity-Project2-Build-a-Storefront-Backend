@@ -1,9 +1,9 @@
-import Order from "../interfaces/products_orders.interface";
+import ProductOrder from "../interfaces/products_orders.interface";
 import db from "../database/index.db";
 
 class proOrderModel {
     // get all orders -> index
-    async getAllProOrders(): Promise<Order[]> {
+    async getAllProOrders(): Promise<ProductOrder[]> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -22,7 +22,7 @@ class proOrderModel {
     }
 
     // create order  
-    async addProOrder(order: Order): Promise<Order> {
+    async addProOrder(order: ProductOrder): Promise<ProductOrder> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -39,7 +39,7 @@ class proOrderModel {
     }
 
     // delete order 
-    async deleteProOrder(id: number): Promise<Order> {
+    async deleteProOrder(id: number): Promise<ProductOrder> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -56,7 +56,7 @@ class proOrderModel {
     }
 
     // get order by id 
-    async getProOrder(id: number): Promise<Order> {
+    async getProOrder(id: number): Promise<ProductOrder> {
         try {           
             //open DB connection
             const conn = await db.connect()
@@ -73,7 +73,7 @@ class proOrderModel {
     }
     
     // update order
-    async updateProOrder(id: number, price: number, quantity: number, product_id: number, order_id: number): Promise<Order> {
+    async updateProOrder(id: number, price: number, quantity: number, product_id: number, order_id: number): Promise<ProductOrder> {
         try {           
             //open DB connection
             const conn = await db.connect()

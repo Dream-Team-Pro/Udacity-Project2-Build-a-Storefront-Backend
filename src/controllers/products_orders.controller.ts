@@ -8,7 +8,7 @@ export const getAllProOrders = async(req:Request, res:Response): Promise<void> =
     try {
         const orders = await orderModel.getAllProOrders();
         res.send({
-            message: "This is all products_orders in table",
+            message: "Success to get all dailyorders in table",
             data: {...orders}
         })
     } catch (error) {
@@ -21,11 +21,11 @@ export const addProOrder = async(req:Request, res:Response): Promise<void> => {
     try {
         const addorder = await orderModel.addProOrder(req.body);
         res.send({
-            message: "This is all add products_orders in table",
+            message: "Success to Create a new dailyorders in table",
             data: {...addorder}
         })
     } catch (error) {
-        throw new Error('hello from post error')
+        throw new Error('hello from dailyorders error')
     }
 };
 
@@ -34,7 +34,7 @@ export const deleteProOrder = async(req: Request, res: Response): Promise<void> 
     try {
         const deleteorder = await orderModel.deleteProOrder(parseInt(req.params.id));
         res.send({
-            message: "This is delete products_orders from table",
+            message: "Success to delete dailyorders from table",
             data: {...deleteorder}
         })
     } catch (error) {
@@ -47,7 +47,7 @@ export const getProOrder = async(req: Request, res: Response): Promise<void> => 
     try {
         const getorder = await orderModel.getProOrder(parseInt(req.params.id));
         res.send({
-            message: "This is get a product_order from table",
+            message: "Success to get a dailyorder from table",
             data: {...getorder}
         })
     } catch (error) {
@@ -61,7 +61,7 @@ export const updateProOrder = async(req:Request, res:Response): Promise<void> =>
         const updateorder = await orderModel.updateProOrder(Number(req.body.id), Number(req.body.price), 
         Number(req.body.quantity), Number(req.body.product_id), Number(req.body.order_id));       
         res.send({
-            message: "This is update product_order in table",
+            message: "Success to update the dailyorder in table",
             data: {...updateorder}
         })
     } catch (error) {        
